@@ -1,6 +1,6 @@
 # Garðr Builder
 
-This command line tools allows for fast and easy building of a [Garðr](http://gardr.github.io/) project with optional plugins.
+This command line tool allows for fast and easy building of a [Garðr](http://gardr.github.io/) project with optional plugins.
 
 
 ## Prequisitions 
