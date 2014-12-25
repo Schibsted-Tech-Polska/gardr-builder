@@ -30,7 +30,7 @@ All those files should be a new line delimited lists. ```/config``` directory co
 
 ## Usage
 
-Use this command to build the package: ```npm run make [host|ext|iframe] [options]```
+Use this command to build the component: ```npm run make [host|ext|iframe] [options]```
 
 If your npm version is lower than 2.0.0, use this command instead: ```node cli.js [host|ext|iframe] [options]```
 
@@ -39,7 +39,7 @@ Your built files will be placed inside ```/output``` directory.
 
 ## Options
 
-```minify``` - to additionally create minified version of a package
+```minify``` - to additionally create minified version of a component
 
 ```plugins``` - project root relative path to plugins list file that should be used instead of ```./config/[host|ext]-plugins-default.txt```
 
