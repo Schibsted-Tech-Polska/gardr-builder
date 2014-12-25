@@ -30,9 +30,11 @@ All those files should be a new line delimited lists. ```/config``` directory co
 
 ## Usage
 
-Use this command to build the package: ```npm run make [host|ext] [options]```
+Use this command to build the package: ```npm run make [host|ext|iframe] [options]```
 
-If your npm version is lower than 2.0.0, use this command instead: ```node cli.js [host|ext] [options]```
+If your npm version is lower than 2.0.0, use this command instead: ```node cli.js [host|ext|iframe] [options]```
+
+Your built files will be placed inside ```/output``` directory.
 
 
 ## Options
