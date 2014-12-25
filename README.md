@@ -41,6 +41,6 @@ Your built files will be placed inside ```/output``` directory.
 
 ```minify``` - to additionally create minified version of a component
 
-```plugins``` - project root relative path to plugins list file that should be used instead of ```./config/[host|ext]-plugins-default.txt```
+```plugins=[path]``` - project root relative path to plugins list file that should be used instead of ```./config/[host|ext]-plugins-default.txt```
 
-```domains``` - project root relative path to allowed domains list file that should be used instead of ```./config/ext-allowed-domains-default.txt```
+```domains=[path]``` - project root relative path to allowed domains list file that should be used instead of ```./config/ext-allowed-domains-default.txt```
