@@ -1,0 +1,30 @@
+{
+  "name": "gardr-builder",
+  "author": "Krystian Jarmicki <krystian.jarmicki@schibsted.pl>",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "Builder utility for Gardr library",
+  "main": "cli.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha",
+    "make": "node cli.js"
+  },
+  "dependencies": {
+    "browserify": "^6.3.2",
+    "change-case": "^2.1.5",
+    "gardr-ext": "^0.6.0",
+    "gardr-host": "^0.6.1",
+    "npm": "^2.1.14",
+    "q": "^1.1.1",
+    "shelljs": "^0.3.0",
+    "swig": "^1.4.2",
+    "uglify-js": "^2.4.16"
+  },
+  "devDependencies": {
+    "mocha": "^2.0.1"
+  },
+  "keywords": [
+    "gardr",
+    "builder"
+  ]
+}
