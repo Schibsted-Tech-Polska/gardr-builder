@@ -1,6 +1,6 @@
 'use strict';
 
-var config = {
+var config = Object.freeze({
     BROWSERIFY_BIN: 'node_modules/.bin/browserify',
     BUILD_PATH: 'output/',
     BUNDLE_PATH: 'output/',
@@ -21,6 +21,6 @@ var config = {
     DEFAULT_ALLOWED_DOMAINS_PATH: 'config/ext-allowed-domains-default.txt',
     IFRAME_ORIGINAL_PATH: 'node_modules/gardr-ext/iframe.html',
     IFRAME_DESTINATION_PATH: 'output/iframe.html'
-};
+});
 
 module.exports = config;
