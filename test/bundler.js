@@ -6,7 +6,8 @@ var bundler = require('../lib/bundler'),
     fs = require('fs'),
     path = require('path'),
     assert = require('assert'),
-    Q = require('q');
+    Q = require('q'),
+    config = require('../config');
 
 describe('Bundler', function() {
 
@@ -19,11 +20,11 @@ describe('Bundler', function() {
         var hostDefer = Q.defer(),
             extDefer = Q.defer();
 
-        fs.unlink('bundle/host.js', function() {
+        fs.unlink(config.BUNDLE_PATH + 'host-bundle.js', function() {
             hostDefer.resolve();
         });
 
-        fs.unlink('bundle/ext.js', function() {
+        fs.unlink(config.BUNDLE_PATH + 'ext-bundle.js', function() {
             extDefer.resolve();
         });
 

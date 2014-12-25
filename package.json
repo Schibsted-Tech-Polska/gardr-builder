@@ -2,7 +2,7 @@
   "name": "gardr-builder",
   "author": "Krystian Jarmicki <krystian.jarmicki@schibsted.pl>",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Builder utility for Gardr library",
   "main": "cli.js",
   "scripts": {
@@ -14,6 +14,7 @@
     "change-case": "^2.1.5",
     "gardr-ext": "^0.6.0",
     "gardr-host": "^0.6.1",
+    "html-minifier": "^0.6.9",
     "npm": "^2.1.14",
     "q": "^1.1.1",
     "shelljs": "^0.3.0",

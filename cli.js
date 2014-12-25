@@ -6,21 +6,20 @@ var bundler = require('./lib/bundler'),
     packageManager = require('./lib/package-manager'),
     utils = require('./lib/utils'),
     path = require('path'),
+    config  = require('./config'),
 
-    DEFAULT_PLUGINS_PATH = {
-        host: './config/host-plugins-default.txt',
-        ext: './config/ext-plugins-default.txt'
-    },
-    DEFAULT_ALLOWED_DOMAINS_PATH = './config/ext-allowed-domains-default.txt',
 
     args = utils.argvToObj(process.argv),
     write = process.stdout.write.bind(process.stdout),
-    target = args.host ? 'host' : args.ext ? 'ext' : null,
-    pluginsFilePath = target ? path.resolve(args.plugins || DEFAULT_PLUGINS_PATH[target]) : '',
-    allowedDomainsFilePath = path.resolve(args.domains || DEFAULT_ALLOWED_DOMAINS_PATH);
+    target = args.host ? 'host' : args.ext ? 'ext' : args.iframe ? 'iframe' : null,
+    pluginsFilePath,
+    allowedDomainsFilePath;
 
 
-if(target) {
+if(target === 'host' || target === 'ext') {
+
+    pluginsFilePath = path.resolve(args.plugins || config.DEFAULT_PLUGINS_PATH[target]);
+    allowedDomainsFilePath = path.resolve(args.domains || config.DEFAULT_ALLOWED_DOMAINS_PATH);
     
     // 1. install plugins
     write('Installing plugins from ' + pluginsFilePath + '... ');
@@ -59,7 +58,7 @@ if(target) {
         write('File ready at ' + path.resolve(built.filePath) + '\n');
         if(args.minify) {
             write('Minifying file... ');
-            return packager.minify({
+            return packager.minifyJS({
                 filePath: built.filePath,
                 outputFileName: target + '-min.js'
             });
@@ -85,6 +84,34 @@ if(target) {
     });
 
 }
+else if(target === 'iframe') {
+
+    write('Copying iframe... ');
+    builder.copy({
+        source: config.IFRAME_ORIGINAL_PATH,
+        dest: config.IFRAME_DESTINATION_PATH
+    })
+
+        // error while copying file?
+        .fail(utils.thrower)
+
+    .then(function(copied) {
+        write('done\n');
+        if(args.minify) {
+            write('Minifying iframe... ');
+            return packager.minifyHTML({
+                filePath: copied.destFilePath,
+                outputFileName: 'iframe-min.html'
+            });
+        }
+    })
+
+    // handle thrown errors
+    .catch(function(err) {
+        console.error(err.toString());
+    });
+
+}
 else {
-    console.log('Please specify build target (host/ext)');
+    console.log('Please specify build target (host/ext/iframe)');
 }
