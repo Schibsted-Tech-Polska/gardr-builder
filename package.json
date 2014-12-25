@@ -26,5 +26,9 @@
   "keywords": [
     "gardr",
     "builder"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Schibsted-Tech-Polska/gardr-builder"
+  }
 }
