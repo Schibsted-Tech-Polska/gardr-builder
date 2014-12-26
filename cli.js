@@ -8,7 +8,6 @@ var bundler = require('./lib/bundler'),
     path = require('path'),
     config  = require('./config'),
 
-
     args = utils.argvToObj(process.argv),
     write = process.stdout.write.bind(process.stdout),
     target = args.host ? 'host' : args.ext ? 'ext' : args.iframe ? 'iframe' : null,
@@ -86,6 +85,7 @@ if(target === 'host' || target === 'ext') {
 }
 else if(target === 'iframe') {
 
+    // 1. copy iframe from module
     write('Copying iframe... ');
     builder.copy({
         source: config.IFRAME_ORIGINAL_PATH,
@@ -95,14 +95,32 @@ else if(target === 'iframe') {
         // error while copying file?
         .fail(utils.thrower)
 
+    // 2. minify
     .then(function(copied) {
         write('done\n');
+        write('File ready at ' + path.resolve(copied.destFilePath) + '\n');
         if(args.minify) {
             write('Minifying iframe... ');
             return packager.minifyHTML({
                 filePath: copied.destFilePath,
                 outputFileName: 'iframe-min.html'
             });
+        }
+        else {
+            return {
+                filePath: copied.destFilePath
+            };
+        }
+    })
+
+        // error while minifying file?
+        .fail(utils.thrower)
+
+    // 3. expose file path
+    .then(function(minified) {
+        if(args.minify) {
+            write('done\n');
+            write('Minified file ready at ' + path.resolve(minified.filePath) + '\n');
         }
     })
 
