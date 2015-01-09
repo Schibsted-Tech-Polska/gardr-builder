@@ -17,11 +17,11 @@ describe('Builder', function() {
             extDefer = Q.defer(),
             copyDefer = Q.defer();
 
-        fs.unlink(config.BUILD_PATH + 'host.js', function() {
+        fs.unlink(config.BUILD_PATH + 'gardr-host.js', function() {
             hostDefer.resolve();
         });
 
-        fs.unlink(config.BUILD_PATH + 'ext.js', function() {
+        fs.unlink(config.BUILD_PATH + 'gardr-ext.js', function() {
             extDefer.resolve();
         });
 
