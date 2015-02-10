@@ -3,7 +3,6 @@
 'use strict';
 
 var assert = require('assert'),
-    Q = require('q'),
     fs = require('fs'),
     config = require('../config');
 
@@ -13,23 +12,23 @@ describe('Builder', function() {
 
     // cleanup
     afterEach(function(done) {
-        var hostDefer = Q.defer(),
-            extDefer = Q.defer(),
-            copyDefer = Q.defer();
+        var hostPromise,
+            extPromise,
+            copyPromise;
 
-        fs.unlink(config.BUILD_PATH + 'gardr-host.js', function() {
-            hostDefer.resolve();
+        hostPromise = new Promise(function(resolve) {
+            fs.unlink(config.BUILD_PATH + 'gardr-host.js', resolve);
         });
 
-        fs.unlink(config.BUILD_PATH + 'gardr-ext.js', function() {
-            extDefer.resolve();
+        extPromise = new Promise(function(resolve) {
+            fs.unlink(config.BUILD_PATH + 'gardr-ext.js', resolve); 
         });
 
-        fs.unlink('test/assets/build/copied.js', function() {
-            copyDefer.resolve();
+        copyPromise = new Promise(function(resolve) {
+            fs.unlink('test/assets/build/copied.js', resolve);
         });
 
-        Q.all([hostDefer, extDefer]).then(function() {
+        Promise.all([hostPromise, extPromise, copyPromise]).then(function() {
             done();
         });
     });
@@ -41,8 +40,7 @@ describe('Builder', function() {
 
     it('should return a promise', function() {
         var buildProcess = builder.build();
-        assert.equal(typeof buildProcess, 'object', 'build returns an object');
-        assert.equal(typeof buildProcess.then, 'function', 'build returns an object with then method');
+        assert.ok(buildProcess instanceof Promise, 'build returns a Promise instance');
     });
 
     it('should create a host file', function(done) {
@@ -88,28 +86,32 @@ describe('Builder', function() {
             source: 'test/assets/build/to-copy.js',
             dest: 'test/assets/build/copied.js'
         }).then(function(result) {
-            var sourceFileDefer = Q.defer(),
-                destFileDefer = Q.defer();
+            var sourceFilePromise,
+                destFilePromise;
 
-            fs.readFile(result.sourceFilePath, function(err, data) {
-                if(err) {
-                    done(err);
-                }
-                else {
-                    sourceFileDefer.resolve(data);
-                }
+            sourceFilePromise = new Promise(function(resolve, reject) {
+                fs.readFile(result.sourceFilePath, function(err, data) {
+                    if(err) {
+                        reject(err);
+                    }
+                    else {
+                        resolve(data);
+                    }
+                });
             });
 
-            fs.readFile(result.destFilePath, function(err, data) {
-                if(err) {
-                    done(err);
-                }
-                else {
-                    destFileDefer.resolve(data);
-                }
+            destFilePromise = new Promise(function(resolve, reject) {
+                fs.readFile(result.destFilePath, function(err, data) {
+                    if(err) {
+                        reject(err);
+                    }
+                    else {
+                        resolve(data);
+                    }
+                });
             });
 
-            Q.all([sourceFileDefer.promise, destFileDefer.promise]).then(function(results) {
+            Promise.all([sourceFilePromise, destFilePromise]).then(function(results) {
                 assert.equal(results[0].toString(), results[1].toString(), 'file has been copied');
                 done();
             })
@@ -118,7 +120,7 @@ describe('Builder', function() {
             });
 
         })
-        .fail(function(reason) {
+        .catch(function(reason) {
             done(reason);
         });
     });

@@ -4,7 +4,6 @@
 
 var assert = require('assert'),
     fs = require('fs'),
-    Q = require('q'),
     config = require('../config');
 
 var packager = require('../lib/packager');
@@ -13,18 +12,19 @@ describe('Packager', function() {
 
     // cleanup
     afterEach(function(done) {
-        var jsDefer = Q.defer(),
-            htmlDefer = Q.defer();
+        var jsPromise,
+            htmlPromise;
 
-        fs.unlink(config.MINIFIED_PATH + 'code-min.js', function() {
-            jsDefer.resolve();
+
+        jsPromise = new Promise(function(resolve) {
+            fs.unlink(config.MINIFIED_PATH + 'code-min.js', resolve);
         });
 
-        fs.unlink(config.MINIFIED_PATH + 'code-min.html', function() {
-            htmlDefer.resolve();
+        htmlPromise = new Promise(function(resolve) {
+            fs.unlink(config.MINIFIED_PATH + 'code-min.html', resolve);
         });
 
-        Q.all([htmlDefer, jsDefer]).then(function() {
+        Promise.all([htmlPromise, jsPromise]).then(function() {
             done();
         });
     });

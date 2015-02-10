@@ -5,7 +5,7 @@ This command line tool allows for fast and easy building of a [Garðr](http://ga
 
 ## Prequisitions 
 
-* Node.js version 0.10.34 or higher
+* Node.js version 0.12.0 or higher
 
 For convinience, make sure you have npm in version 2.0.0 or higher.
 

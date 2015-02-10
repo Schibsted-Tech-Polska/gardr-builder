@@ -25,7 +25,7 @@ if(target === 'host' || target === 'ext') {
     packageManager.installFromFile(pluginsFilePath)
 
         // plugins file not found?
-        .fail(utils.thrower)
+        .catch(utils.thrower)
 
     // 2. create bundle file
     .then(function(plugins) {
@@ -39,7 +39,7 @@ if(target === 'host' || target === 'ext') {
     })
 
         // domains file not found?
-        .fail(utils.thrower)
+        .catch(utils.thrower)
 
     // 3. build gardr file
     .then(function(bundle) {
@@ -93,7 +93,7 @@ else if(target === 'iframe') {
     })
 
         // error while copying file?
-        .fail(utils.thrower)
+        .catch(utils.thrower)
 
     // 2. minify
     .then(function(copied) {
@@ -114,7 +114,7 @@ else if(target === 'iframe') {
     })
 
         // error while minifying file?
-        .fail(utils.thrower)
+        .catch(utils.thrower)
 
     // 3. expose file path
     .then(function(minified) {

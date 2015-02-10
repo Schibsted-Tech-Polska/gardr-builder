@@ -6,7 +6,6 @@ var bundler = require('../lib/bundler'),
     fs = require('fs'),
     path = require('path'),
     assert = require('assert'),
-    Q = require('q'),
     config = require('../config');
 
 describe('Bundler', function() {
@@ -17,18 +16,18 @@ describe('Bundler', function() {
 
     // cleanup
     afterEach(function(done) {
-        var hostDefer = Q.defer(),
-            extDefer = Q.defer();
+        var hostPromise,
+            extPromise;
 
-        fs.unlink(config.BUNDLE_PATH + 'host-bundle.js', function() {
-            hostDefer.resolve();
+        hostPromise = new Promise(function(resolve) {
+            fs.unlink(config.BUNDLE_PATH + 'host-bundle.js', resolve);
         });
 
-        fs.unlink(config.BUNDLE_PATH + 'ext-bundle.js', function() {
-            extDefer.resolve();
+        extPromise = new Promise(function(resolve) {
+            fs.unlink(config.BUNDLE_PATH + 'ext-bundle.js', resolve);
         });
 
-        Q.all([hostDefer, extDefer]).then(function() {
+        Promise.all([hostPromise, extPromise]).then(function() {
             done();
         });
     });
@@ -39,8 +38,7 @@ describe('Bundler', function() {
 
     it('should return a promise', function() {
         var bundleProcess = bundler.bundle();
-        assert.equal(typeof bundleProcess, 'object', 'bundle returns an object');
-        assert.equal(typeof bundleProcess.then, 'function', 'bundle returns an object with then method');
+        assert.ok(bundleProcess instanceof Promise, 'bundle returns a Promise instance');
     });
 
     it('should crate host bundle file', function(done) {
@@ -59,7 +57,7 @@ describe('Bundler', function() {
                 }
             });
         })
-        .fail(function(reason) {
+        .catch(function(reason) {
             done(reason);
         });
 
@@ -89,7 +87,7 @@ describe('Bundler', function() {
                 }
             });
         })
-        .fail(function(reason) {
+        .catch(function(reason) {
             done(reason);
         });
 
@@ -115,7 +113,7 @@ describe('Bundler', function() {
                 }
             });
         })
-        .fail(function(reason) {
+        .catch(function(reason) {
             done(reason);
         });
 
@@ -146,7 +144,7 @@ describe('Bundler', function() {
                 }
             });
         })
-        .fail(function(reason) {
+        .catch(function(reason) {
             done(reason);
         });
 
@@ -173,7 +171,7 @@ describe('Bundler', function() {
                 }
             });
         })
-        .fail(function(reason) {
+        .catch(function(reason) {
             done(reason);
         });
 
@@ -200,7 +198,7 @@ describe('Bundler', function() {
                 }
             });
         })
-        .fail(function(reason) {
+        .catch(function(reason) {
             done(reason);
         });
 

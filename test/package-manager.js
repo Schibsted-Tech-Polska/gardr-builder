@@ -92,7 +92,7 @@ describe('Package Manager', function() {
                             done(err);
                         }
                     })
-                    .fail(function(err) {
+                    .catch(function(err) {
                         done(err);
                     });
             });
@@ -116,7 +116,7 @@ describe('Package Manager', function() {
                             done(err);
                         }
                     })
-                    .fail(function(err) {
+                    .catch(function(err) {
                         done(err);
                     });
             });
