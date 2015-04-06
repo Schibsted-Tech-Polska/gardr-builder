@@ -13,15 +13,14 @@
     "make": "node cli.js"
   },
   "dependencies": {
-    "browserify": "^6.3.2",
+    "browserify": "^9.0.7",
     "change-case": "^2.1.5",
     "gardr-ext": "^0.6.0",
     "gardr-host": "^0.6.1",
     "html-minifier": "^0.6.9",
     "npm": "^2.1.14",
-    "shelljs": "^0.3.0",
     "swig": "^1.4.2",
-    "uglify-js": "^2.4.16"
+    "uglify-js": "^2.4.19"
   },
   "devDependencies": {
     "mocha": "^2.0.1"
