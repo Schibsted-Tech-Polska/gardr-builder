@@ -59,7 +59,7 @@ describe('Builder', function() {
                     done();
                 }
             });
-        });
+        }).catch(done);
     });
 
     it('should create a ext file', function(done) {
@@ -78,7 +78,7 @@ describe('Builder', function() {
                     done();
                 }
             });
-        });
+        }).catch(done);
     });
 
     it('should be able to copy a file', function(done) {
