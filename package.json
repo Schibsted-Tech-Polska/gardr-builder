@@ -15,8 +15,8 @@
   "dependencies": {
     "browserify": "^6.3.2",
     "change-case": "^2.1.5",
-    "gardr-ext": "^0.6.0",
-    "gardr-host": "^0.6.1",
+    "gardr-ext": "^1.0.0-alpha.3",
+    "gardr-host": "^1.0.0-alpha.1",
     "html-minifier": "^0.6.9",
     "npm": "^2.1.14",
     "shelljs": "^0.3.0",
