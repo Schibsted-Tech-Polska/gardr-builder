@@ -23,7 +23,7 @@ Go to ```/config``` directory and create files there:
 
 ```host-plugins-default.txt``` - plugins that are loaded into host by default
 
-```ext-allowed-domains``` - domains that are allowed for ext by default
+```ext-allowed-domains.txt``` - domains that are allowed for ext by default
 
 
 All those files should be a new line delimited lists. ```/config``` directory contains examples of them.
