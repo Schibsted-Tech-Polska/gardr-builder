@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/Schibsted-Tech-Polska/gardr-builder.svg)](https://travis-ci.org/Schibsted-Tech-Polska/gardr-builder)
-
-[![Coverage Status](https://coveralls.io/repos/Schibsted-Tech-Polska/gardr-builder/badge.svg)](https://coveralls.io/r/Schibsted-Tech-Polska/gardr-builder)
+[![Build Status](https://travis-ci.org/Schibsted-Tech-Polska/gardr-builder.svg)](https://travis-ci.org/Schibsted-Tech-Polska/gardr-builder) [![Coverage Status](https://coveralls.io/repos/Schibsted-Tech-Polska/gardr-builder/badge.svg)](https://coveralls.io/r/Schibsted-Tech-Polska/gardr-builder)
 
 # Garðr Builder
 
