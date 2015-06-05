@@ -8,8 +8,7 @@ This command line tool allows for fast and easy building of a [Garðr](http://ga
 ## Prequisitions 
 
 * Node.js version 0.12.0 or higher
-
-For convinience, make sure you have npm in version 2.0.0 or higher.
+* npm in version 2.0.0 or higher.
 
 
 ## Installation
@@ -34,9 +33,8 @@ All those files should be a new line delimited lists. ```/config``` directory co
 
 Use this command to build the component: ```npm run make [host|ext|iframe] [options]```
 
-If your npm version is lower than 2.0.0, use this command instead: ```node cli.js [host|ext|iframe] [options]```
 
-Your built files will be placed inside ```/output``` directory.
+Your built files will be placed inside ```/output``` directory. Global Gardr objects will be exposed as ```gardrHost``` and ```gardrExt```.
 
 
 ## Options
