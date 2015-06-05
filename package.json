@@ -10,7 +10,8 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha",
-    "make": "node cli.js"
+    "make": "node cli.js",
+    "coverage": "./node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha test/*.js -- --recursive"
   },
   "dependencies": {
     "browserify": "^9.0.7",
@@ -23,7 +24,9 @@
     "uglify-js": "^2.4.19"
   },
   "devDependencies": {
-    "mocha": "^2.0.1"
+    "mocha": "^2.0.1",
+    "coveralls": "2.11.2",
+    "istanbul": "0.3.13"
   },
   "keywords": [
     "gardr",
