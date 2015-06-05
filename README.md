@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Schibsted-Tech-Polska/gardr-builder.svg)](https://travis-ci.org/Schibsted-Tech-Polska/gardr-builder)
+
 # Garðr Builder
 
 This command line tool allows for fast and easy building of a [Garðr](http://gardr.github.io/) project with optional plugins.
