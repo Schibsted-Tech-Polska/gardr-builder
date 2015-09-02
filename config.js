@@ -15,8 +15,12 @@ var config = Object.freeze({
     TEMPLATE_PATH: 'templates/',
     PACKAGE_PREFIX: 'gardr-',
     DEFAULT_PLUGINS_PATH: {
-        host: 'config/host-plugins-default.txt',
-        ext: 'config/ext-plugins-default.txt'
+        HOST: 'config/host-plugins-default.txt',
+        EXT: 'config/ext-plugins-default.txt'
+    },
+    VERSIONS: {
+        HOST: '^1.0.0-alpha.1',
+        EXT: '^1.0.0-alpha.3'
     },
     DEFAULT_ALLOWED_DOMAINS_PATH: 'config/ext-allowed-domains-default.txt',
     IFRAME_ORIGINAL_PATH: 'node_modules/gardr-ext/iframe.html',

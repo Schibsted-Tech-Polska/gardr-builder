@@ -17,17 +17,26 @@ var config  = require('./config'),
 
 if(target === 'host' || target === 'ext') {
 
-    pluginsFilePath = path.resolve(args.plugins || config.DEFAULT_PLUGINS_PATH[target]);
+    pluginsFilePath = path.resolve(args.plugins || config.DEFAULT_PLUGINS_PATH[target.toUpperCase()]);
     allowedDomainsFilePath = path.resolve(args.domains || config.DEFAULT_ALLOWED_DOMAINS_PATH);
-    
-    // 1. install plugins
-    write('Installing plugins from ' + pluginsFilePath + '... ');
-    packageManager.installFromFile(pluginsFilePath)
+
+    // 1. install target library
+    write('Installing Gardr ' + target + ' at version ' + config.VERSIONS[target.toUpperCase()] + ' ...');
+    packageManager.install('gardr-' + target + '@' + config.VERSIONS[target.toUpperCase()])
+        // lib not found?
+        .catch(utils.thrower)
+
+    // 2. install plugins
+    .then(function() {
+        write('done\n');
+        write('Installing plugins from ' + pluginsFilePath + '... ');
+        return packageManager.installFromFile(pluginsFilePath);
+    })
 
         // plugins file not found?
         .catch(utils.thrower)
 
-    // 2. create bundle file
+    // 3. create bundle file
     .then(function(plugins) {
         write('done\n');
         write('Creating bundle... ');
@@ -41,7 +50,7 @@ if(target === 'host' || target === 'ext') {
         // domains file not found?
         .catch(utils.thrower)
 
-    // 3. build gardr file
+    // 4. build gardr file
     .then(function(bundle) {
         write('done\n');
         write('Building file... ');
@@ -51,7 +60,7 @@ if(target === 'host' || target === 'ext') {
         });
     })
 
-    // 4. minify and package
+    // 5. minify and package
     .then(function(built) {
         write('done\n');
         write('File ready at ' + path.resolve(built.filePath) + '\n');
@@ -69,7 +78,7 @@ if(target === 'host' || target === 'ext') {
         }
     })
 
-    // 5. expose file path
+    // 6. expose file path
     .then(function(minified) {
         if(args.minify) {
             write('done\n');
@@ -85,17 +94,26 @@ if(target === 'host' || target === 'ext') {
 }
 else if(target === 'iframe') {
 
-    // 1. copy iframe from module
-    write('Copying iframe... ');
-    builder.copy({
-        source: config.IFRAME_ORIGINAL_PATH,
-        dest: config.IFRAME_DESTINATION_PATH
+    // 1. install ext library
+    write('Installing Gardr ext at version ' + config.VERSIONS.EXT + ' ...');
+    packageManager.install('gardr-ext@' + config.VERSIONS.EXT)
+        // lib not found?
+        .catch(utils.thrower)
+
+    // 2. copy iframe from module
+    .then(function() {
+        write('done\n');
+        write('Copying iframe... ');
+        return builder.copy({
+            source: config.IFRAME_ORIGINAL_PATH,
+            dest: config.IFRAME_DESTINATION_PATH
+        });
     })
 
         // error while copying file?
         .catch(utils.thrower)
 
-    // 2. minify
+    // 3. minify
     .then(function(copied) {
         write('done\n');
         write('File ready at ' + path.resolve(copied.destFilePath) + '\n');
@@ -116,7 +134,7 @@ else if(target === 'iframe') {
         // error while minifying file?
         .catch(utils.thrower)
 
-    // 3. expose file path
+    // 4. expose file path
     .then(function(minified) {
         if(args.minify) {
             write('done\n');
