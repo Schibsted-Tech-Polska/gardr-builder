@@ -2,11 +2,11 @@
 
 'use strict';
 
-var bundler = require('../lib/bundler'),
+var config = require('../config'),
     fs = require('fs'),
     path = require('path'),
     assert = require('assert'),
-    config = require('../config');
+    bundler = require('../lib/bundler')(config);
 
 describe('Bundler', function() {
 

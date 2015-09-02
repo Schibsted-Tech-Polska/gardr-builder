@@ -4,12 +4,13 @@
 
 var assert = require('assert'),
     npm = require('npm'),
-    path = require('path');
+    path = require('path'),
+    config = require('../config');
 
 var EXAMPLE_PLUGIN_1 = 'gardr-plugin-host-resize';
 var EXAMPLE_PLUGIN_2 = 'gardr-plugin-host-postscribe';
 
-var packageManager = require('../lib/package-manager');
+var packageManager = require('../lib/package-manager')(config);
 
 var loadNpm = function(done, callback) {
     npm.load({

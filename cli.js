@@ -1,12 +1,12 @@
 'use strict';
 
-var bundler = require('./lib/bundler'),
-    builder = require('./lib/builder'),
-    packager = require('./lib/packager'),
-    packageManager = require('./lib/package-manager'),
+var config  = require('./config'),
+    bundler = require('./lib/bundler')(config),
+    builder = require('./lib/builder')(config),
+    packager = require('./lib/packager')(config),
+    packageManager = require('./lib/package-manager')(config),
     utils = require('./lib/utils'),
     path = require('path'),
-    config  = require('./config'),
 
     args = utils.argvToObj(process.argv),
     write = process.stdout.write.bind(process.stdout),

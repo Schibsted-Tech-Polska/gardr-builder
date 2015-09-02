@@ -6,7 +6,7 @@ var assert = require('assert'),
     fs = require('fs'),
     config = require('../config');
 
-var builder = require('../lib/builder');
+var builder = require('../lib/builder')(config);
 
 describe('Builder', function() {
 

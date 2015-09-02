@@ -6,7 +6,7 @@ var assert = require('assert'),
     fs = require('fs'),
     config = require('../config');
 
-var packager = require('../lib/packager');
+var packager = require('../lib/packager')(config);
 
 describe('Packager', function() {
 
