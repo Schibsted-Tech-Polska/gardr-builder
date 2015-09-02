@@ -1,2 +1,2 @@
-var gardrHost = require('gardr-host');
+var gardrHost = require('./gardr-host-mock');
 module.exports = gardrHost;

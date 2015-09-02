@@ -1,2 +1,2 @@
-var gardrExt = require('gardr-ext');
+var gardrExt = require('./gardr-ext-mock');
 module.exports = gardrExt;

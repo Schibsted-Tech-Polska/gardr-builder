@@ -41,7 +41,7 @@ describe('Bundler', function() {
         assert.ok(bundleProcess instanceof Promise, 'bundle returns a Promise instance');
     });
 
-    it('should crate host bundle file', function(done) {
+    it('should create host bundle file', function(done) {
 
         bundler.bundle({
             type: 'host'
@@ -63,7 +63,7 @@ describe('Bundler', function() {
 
     });
 
-    it('should crate host bundle file with plugins', function(done) {
+    it('should create host bundle file with plugins', function(done) {
 
         bundler.bundle({
             type: 'host',
@@ -93,7 +93,7 @@ describe('Bundler', function() {
 
     });
 
-    it('should crate ext bundle file', function(done) {
+    it('should create ext bundle file', function(done) {
 
         bundler.bundle({
             type: 'ext'
@@ -119,7 +119,7 @@ describe('Bundler', function() {
 
     });
 
-    it('should crate ext bundle file with plugins', function(done) {
+    it('should create ext bundle file with plugins', function(done) {
 
         bundler.bundle({
             type: 'ext',
@@ -150,7 +150,7 @@ describe('Bundler', function() {
 
     });
 
-    it('should crate ext bundle file with allowed domains list', function(done) {
+    it('should create ext bundle file with allowed domains list', function(done) {
 
         bundler.bundle({
             type: 'ext',
@@ -177,7 +177,7 @@ describe('Bundler', function() {
 
     });
 
-    it('should crate ext bundle file with allowed domains list from file', function(done) {
+    it('should create ext bundle file with allowed domains list from file', function(done) {
 
         bundler.bundle({
             type: 'ext',
