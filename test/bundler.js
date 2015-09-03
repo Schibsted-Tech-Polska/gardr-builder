@@ -177,31 +177,4 @@ describe('Bundler', function() {
 
     });
 
-    it('should create ext bundle file with allowed domains list from file', function(done) {
-
-        bundler.bundle({
-            type: 'ext',
-            allowedDomainsFilePath: getAbsolutePath('./test/assets/bundle/ext-allowed-domains-test.txt')
-        }).then(function(result) {
-            assert.equal(typeof result.filePath, 'string', 'bundle returned path to module');
-            fs.readFile(getAbsolutePath(result.filePath), function(err, data) {
-                if(err) {
-                    throw err;
-                }
-                else {
-                    assert.deepEqual(data.toString().split('\n').join(''),
-                        'var gardrExt = require(\'gardr-ext\');' +
-                        'gardrExt({    allowedDomains: [\'localhost\', \'aftenposten.no\', \'vg.no\']});'+
-                        'module.exports = gardrExt;',
-                    'ext bundle file was created');
-                    done();
-                }
-            });
-        })
-        .catch(function(reason) {
-            done(reason);
-        });
-
-    });
-
 });

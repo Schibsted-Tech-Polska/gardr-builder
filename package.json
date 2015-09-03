@@ -4,9 +4,9 @@
   "license": "MIT",
   "version": "1.2.0",
   "description": "Builder utility for Gardr library",
-  "main": "cli.js",
+  "main": "index.js",
   "engines": {
-    "node" : "^0.12.0"
+    "node": "^0.12.0"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha",
@@ -14,15 +14,16 @@
     "coverage": "./node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha test/*.js -- --recursive"
   },
   "dependencies": {
-    "browserify": "^9.0.7",
-    "change-case": "^2.1.5",
-    "html-minifier": "^0.6.9",
-    "npm": "^2.1.14",
-    "swig": "^1.4.2",
-    "uglify-js": "^2.4.19"
+    "browserify": "9.0.7",
+    "change-case": "2.1.5",
+    "extend": "3.0.0",
+    "html-minifier": "0.6.9",
+    "npm": "2.1.14",
+    "swig": "1.4.2",
+    "uglify-js": "2.4.19"
   },
   "devDependencies": {
-    "mocha": "^2.0.1",
+    "mocha": "2.0.1",
     "coveralls": "2.11.2",
     "istanbul": "0.3.13"
   },

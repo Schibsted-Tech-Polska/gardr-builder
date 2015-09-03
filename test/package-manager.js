@@ -62,15 +62,6 @@ describe('Package Manager', function() {
             });
     });
 
-    it('should install plugins from list specified by file', function(done) {
-        this.timeout(10000);
-        packageManager.installFromFile(path.resolve('./test/assets/package-manager/host-plugins-test.txt'))
-            .then(function(data) {
-                assert.ok(data, 'plugins were installed from file list');
-                done();
-            });
-    });
-
     it('should list installed plugins', function(done) {
         this.timeout(5000);
         loadNpm(done, function() {
