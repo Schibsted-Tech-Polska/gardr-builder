@@ -53,12 +53,12 @@ module.exports = function(config) {
         .catch(utils.thrower)
 
         // 3. create bundle file
-        .then(function (installedPlugins) {
+        .then(function () {
             write('done\n');
             write('Creating bundle... ');
             return bundler.bundle({
                 type: target,
-                plugins: installedPlugins,
+                plugins: plugins,
                 allowedDomains: allowedDomains
             });
         })

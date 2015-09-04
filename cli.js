@@ -26,7 +26,6 @@ else if(target === 'ext') {
         utils.fileToArrayPromise(path.resolve(args.domains || config.DEFAULT_ALLOWED_DOMAINS_PATH))
     ])
         .then(function(files) {
-            console.log(files[0]);
             return main.ext({
                 minify: args.minify,
                 plugins: files[0],
@@ -34,7 +33,6 @@ else if(target === 'ext') {
             });
         })
         .catch(function(err) {
-            console.log(err);
             console.error(err.toString());
         });
 }
