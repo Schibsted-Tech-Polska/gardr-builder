@@ -86,4 +86,49 @@ describe('End to end', function() {
             });
         }).catch(done);
     });
+
+    it('should create a minified host file', function(done) {
+        this.timeout(10000);
+        main.host({minify: true}).then(function() {
+            fs.readFile(__dirname + '/output/gardr-host-min.js', function(err, data) {
+                if(err) {
+                    done(err);
+                }
+                else {
+                    assert.ok(data.toString().indexOf('gardr-host') > -1, 'host file was created');
+                    done();
+                }
+            });
+        }).catch(done);
+    });
+
+    it('should create a minified ext file', function(done) {
+        this.timeout(10000);
+        main.ext({minify: true}).then(function() {
+            fs.readFile(__dirname + '/output/gardr-ext-min.js', function(err, data) {
+                if(err) {
+                    done(err);
+                }
+                else {
+                    assert.ok(data.toString().indexOf('gardr-ext') > -1, 'ext file was created');
+                    done();
+                }
+            });
+        }).catch(done);
+    });
+
+    it('should create a minified iframe file', function(done) {
+        this.timeout(10000);
+        main.iframe({minify: true}).then(function() {
+            fs.readFile(__dirname + '/output/iframe-min.html', function(err, data) {
+                if(err) {
+                    done(err);
+                }
+                else {
+                    assert.ok(data.toString().indexOf('<html>') > -1, 'iframe file was created');
+                    done();
+                }
+            });
+        }).catch(done);
+    });
 });

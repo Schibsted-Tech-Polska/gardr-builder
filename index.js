@@ -84,7 +84,7 @@ module.exports = function(config) {
                 write('Minifying file... ');
                 return packager.minifyJS({
                     filePath: built.filePath,
-                    outputFileName: target + '-min.js'
+                    outputFileName: config.PACKAGE_PREFIX + target + '-min.js'
                 });
             }
             else {
