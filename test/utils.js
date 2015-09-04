@@ -30,4 +30,12 @@ describe('General Purpose Utils', function() {
         assert.equal(utils.isTruthy(null), false, 'value is falsy');
     });
 
+    it('fileToArrayPromise should return promise for reading a file', function(done) {
+        console.log(__dirname + '/assets/utils/file');
+        utils.fileToArrayPromise(__dirname + '/assets/utils/file').then(function(result) {
+            assert.deepEqual(result, ['line one', 'line three', 'line four']);
+            done();
+        });
+    });
+
 });
