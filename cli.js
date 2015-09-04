@@ -23,7 +23,7 @@ if(target === 'host') {
 else if(target === 'ext') {
     Promise.all([
         utils.fileToArrayPromise(path.resolve(args.plugins || config.DEFAULT_PLUGINS_PATH.HOST)),
-        utils.fileToArrayPromise(path.resolve(args.domains || config.DEFAULT_ALLOWED_DOMAINS_PATH))
+        utils.fileToArrayPromise(path.resolve(args.allowedDomains || config.DEFAULT_ALLOWED_DOMAINS_PATH))
     ])
         .then(function(files) {
             return main.ext({
