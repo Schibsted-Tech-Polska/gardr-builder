@@ -62,35 +62,6 @@ describe('Package Manager', function() {
             });
     });
 
-    it('should list installed plugins', function(done) {
-        this.timeout(5000);
-        loadNpm(done, function() {
-            npm.commands.install([EXAMPLE_PLUGIN_1], function(err) {
-                if(err) {
-                    done(err);
-                }
-                packageManager.ls()
-                    .then(function(plugins) {
-                        var found;
-                        try {
-                            assert.ok(Array.isArray(plugins), 'plugins are returned as an array');
-                            found = plugins.filter(function(plugin) {
-                                return plugin.name === EXAMPLE_PLUGIN_1;
-                            });
-                            assert.equal(found[0].name, EXAMPLE_PLUGIN_1, 'right plugin is installed');
-                            done();
-                        }
-                        catch(err) {
-                            done(err);
-                        }
-                    })
-                    .catch(function(err) {
-                        done(err);
-                    });
-            });
-        });
-    });
-
     it('should uninstall a plugin', function(done) {
         this.timeout(5000);
         loadNpm(done, function() {
