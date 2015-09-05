@@ -100,6 +100,9 @@ module.exports = function(config) {
                 write('done\n');
                 write('Minified file ready at ' + path.resolve(minified.filePath) + '\n');
             }
+            return {
+                filePath: minified.filePath
+            };
         });
     }
 
@@ -153,6 +156,9 @@ module.exports = function(config) {
                 write('done\n');
                 write('Minified file ready at ' + path.resolve(minified.filePath) + '\n');
             }
+            return {
+                filePath: minified.filePath
+            };
         });
 
     }

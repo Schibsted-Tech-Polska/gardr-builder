@@ -3,7 +3,8 @@
 'use strict';
 
 var assert = require('assert'),
-    fs = require('fs');
+    fs = require('fs'),
+    path = require('path');
 
 var config = Object.freeze({
     BROWSERIFY_BIN: 'node_modules/.bin/browserify',
@@ -44,8 +45,8 @@ describe('End to end', function() {
 
     it('should create a host file', function(done) {
         this.timeout(10000);
-        main.host().then(function() {
-            fs.readFile(__dirname + '/output/gardr-host.js', function(err, data) {
+        main.host().then(function(result) {
+            fs.readFile(path.resolve(result.filePath), function(err, data) {
                 if(err) {
                     done(err);
                 }
@@ -59,8 +60,8 @@ describe('End to end', function() {
 
     it('should create a ext file', function(done) {
         this.timeout(10000);
-        main.ext().then(function() {
-            fs.readFile(__dirname + '/output/gardr-ext.js', function(err, data) {
+        main.ext().then(function(result) {
+            fs.readFile(path.resolve(result.filePath), function(err, data) {
                 if(err) {
                     done(err);
                 }
@@ -74,8 +75,8 @@ describe('End to end', function() {
 
     it('should create a iframe file', function(done) {
         this.timeout(10000);
-        main.iframe().then(function() {
-            fs.readFile(__dirname + '/output/iframe.html', function(err, data) {
+        main.iframe().then(function(result) {
+            fs.readFile(path.resolve(result.filePath), function(err, data) {
                 if(err) {
                     done(err);
                 }
@@ -89,8 +90,8 @@ describe('End to end', function() {
 
     it('should create a minified host file', function(done) {
         this.timeout(10000);
-        main.host({minify: true}).then(function() {
-            fs.readFile(__dirname + '/output/gardr-host-min.js', function(err, data) {
+        main.host({minify: true}).then(function(result) {
+            fs.readFile(path.resolve(result.filePath), function(err, data) {
                 if(err) {
                     done(err);
                 }
@@ -104,8 +105,8 @@ describe('End to end', function() {
 
     it('should create a minified ext file', function(done) {
         this.timeout(10000);
-        main.ext({minify: true}).then(function() {
-            fs.readFile(__dirname + '/output/gardr-ext-min.js', function(err, data) {
+        main.ext({minify: true}).then(function(result) {
+            fs.readFile(path.resolve(result.filePath), function(err, data) {
                 if(err) {
                     done(err);
                 }
@@ -119,8 +120,8 @@ describe('End to end', function() {
 
     it('should create a minified iframe file', function(done) {
         this.timeout(10000);
-        main.iframe({minify: true}).then(function() {
-            fs.readFile(__dirname + '/output/iframe-min.html', function(err, data) {
+        main.iframe({minify: true}).then(function(result) {
+            fs.readFile(path.resolve(result.filePath), function(err, data) {
                 if(err) {
                     done(err);
                 }

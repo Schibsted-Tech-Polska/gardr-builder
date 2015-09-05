@@ -27,8 +27,8 @@ var gardrBuilder = require('gardr-builder')(/* config */);
 gardrBuilder.host({
     minify: true,
     plugins: ['gardr-plugin-host-resize']
-}).then(function() {
-    console.log('host built!');
+}).then(function(result) {
+    console.log('host built at ' + result.filePath);
 });
 ```
 
