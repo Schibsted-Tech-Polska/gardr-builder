@@ -53,7 +53,7 @@ Use ```.host .ext .iframe``` methods of builder.
 
 #### Example
 
-$> npm run make host minify
+```$> npm run make host minify```
 
 #### Configuration
 
