@@ -1,7 +1,7 @@
 'use strict';
 
 var config = Object.freeze({
-    BROWSERIFY_BIN: 'node_modules/.bin/browserify',
+    BROWSERIFY_BIN: __dirname + '/node_modules/.bin/browserify',
     BUILD_PATH: 'output/',
     BUNDLE_PATH: 'output/',
     MINIFIED_PATH: 'output/',
@@ -12,7 +12,7 @@ var config = Object.freeze({
         minifyJS: true,
         minifyCSS: true
     },
-    TEMPLATE_PATH: 'templates/',
+    TEMPLATE_PATH: __dirname + '/templates/',
     PACKAGE_PREFIX: 'gardr-',
     DEFAULT_PLUGINS_PATH: {
         HOST: 'config/host-plugins-default.txt',
