@@ -16,7 +16,7 @@
   "dependencies": {
     "browserify": "9.0.7",
     "change-case": "2.1.5",
-    "extend": "3.0.0",
+    "extend": "3.0.2",
     "html-minifier": "0.6.9",
     "npm": "2.14.3",
     "swig": "1.4.2",
